@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../public/javascripts/angular/angular.min.js"></script>
+    <script src="../public/javascripts/angular-route/angular-route.min.js"></script>
+    <script src="../public/javascripts/angular-animate/angular-animate.min.js"></script>
+    <script src="../public/javascripts/mui.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/mui.css">
+    <script src="app.js"></script>
+    <script src="controller.js"></script>
+    <script src="sevices.js"></script>
+    <style>
+        /*
+        * 1.view-animate
+        * 2.ng-enter  100%
+        * 3.ng-enter-active  0%
+        * 4.ngview复制一份
+            已有的要离开  leave
+
+             ng-leave    0%
+             ng-leave-active   -100%
+
+             复制出来的ng-view  包含有最新的内容
+        */
+        .view-animate {
+            transition:left ease 3s;
+        }
+        .view-animate.ng-enter, .view-animate.ng-leave {
+            width:100%;
+            position:absolute;
+            left:0;
+
+        }
+        .view-animate.ng-enter {
+            left: 100%;
+        }
+        .view-animate.ng-enter.ng-enter-active {
+            left: 0;
+        }
+        .view-animate.ng-leave.ng-leave-active {
+            left:-100%;
+        }
+    </style>
+</head>
+<body ng-app="myapp">
+    <header class="mui-bar mui-bar-nav">
+        <h1 class="mui-title">路由</h1>
+    </header>
+    <div ng-view class="view-animate">
+
+    </div>
+
+
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item mui-active">
+            <span class="mui-icon mui-icon-home"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+        <a class="mui-tab-item">
+            <span class="mui-icon mui-icon-phone"></span>
+            <span class="mui-tab-label">通讯录</span>
+        </a>
+        <a class="mui-tab-item">
+            <span class="mui-icon mui-icon-email"></span>
+            <span class="mui-tab-label">邮件</span>
+        </a>
+        <a class="mui-tab-item">
+            <span class="mui-icon mui-icon-gear"></span>
+            <span class="mui-tab-label">备忘录</span>
+        </a>
+        <a class="mui-tab-item">
+            <span class="mui-icon mui-icon-gear"></span>
+            <span class="mui-tab-label">备忘录</span>
+        </a>
+    </nav>
+</body>
+</html>

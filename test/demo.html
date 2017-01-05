@@ -1,0 +1,21 @@
+<!--
+<ul>
+    <li>01</li>
+    <li>02</li>
+    <li>03</li>
+    <li>04</li>
+    <li>05</li>
+    <li>06</li>
+</ul>
+
+<div ng-transclude></div>-->
+
+<ul>
+    <li ng-repeat="item in data">
+        <span ng-click="change($index)">{{item.name}}</span>
+        <ul ng-show="$index==a">
+            <li ng-repeat="item1 in item.son">{{item1.name}}</li>
+        </ul>
+    </li>
+
+</ul>

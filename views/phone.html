@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="javascripts/angular/angular.min.js"></script>
+    <script src="javascripts/phone.js"></script>
+    <link rel="stylesheet" href="stylesheets/mui.css">
+    <style>
+        body{
+            width: 100%;
+            height: 100%;
+            background: url("images/bg.jpg");
+            background-size: 100%;
+        }
+        .mui-bar{
+            background-color: #351F2B;
+        }
+        .mui-title{
+            color: #fff;
+        }
+        .all{
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+        }
+        .upper{
+            color: #fff;
+        }
+        .mui-table-view-cell > a:not(.mui-btn) {
+             margin: 0px -15px;
+        }
+        .mui-input-row{
+            width: 100%;
+            position: fixed;
+            top: 44px;
+            z-index: 999;
+        }
+        .mui-input-row input{
+            border-radius: 20px;
+            background: #e3e3e3;
+            line-height: 100px;
+        }
+        .mui-table-view{
+            background: none;
+        }
+        .en{
+            position: fixed;
+            right: 10px;
+            width: 20px;
+            z-index: 9999;
+            top: 100px;
+            color: #fff;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var placeholder = document.querySelector(".mui-placeholder");
+            var input = document.querySelector(".mui-input-clear");
+            var inners=document.querySelector(".inners");
+            placeholder.onclick = function () {
+                this.style.width = "20px";
+                input.focus();
+            }
+            input.onblur = function () {
+                placeholder.style.width = "100%";
+//                inners.innerHTML="";
+            }
+        }
+    </script>
+</head>
+<body ng-app="myapp">
+<header class="mui-bar mui-bar-nav" style="z-index:1000">
+    <h1 class="mui-title">通讯录</h1>
+</header>
+<div ng-controller="phone">
+    <!--搜索框-->
+    <div class="mui-input-row mui-search">
+        <input type="search" class="mui-input-clear" placeholder="" data-input-clear="15" data-input-search="15" ng-model="search">
+
+        <span class="mui-placeholder">
+            <span class="mui-icon mui-icon-search"></span><br>
+            <!--<span class="inners"></span>-->
+        </span>
+    </div>
+    <!--通讯录-->
+    <!--<ul class="mui-table-view" style="margin-top: 78px">
+        <div class="all" ng-show="type!==''" ng-click="show()">显示全部</div>
+        <li class="mui-table-view-cell" ng-repeat="item in data | filter:{en:type} | filter:{en:search} track by $index ">
+            &lt;!&ndash;track by $index 根据自己的下标生成自己的索引&ndash;&gt;
+            <div class="upper">
+                {{item.en}}
+            </div>
+            <a class="person" href="tel:{{aa.phone}}" ng-repeat="aa in item track by $index">
+                <span>{{aa.name}}</span><br>
+                <span>{{aa.phone}}</span>
+            </a>
+        </li>
+    </ul>-->
+
+    <ul class="mui-table-view" style="margin-top: 78px">
+        <div class="all" ng-show="type!==''" ng-click="show()">显示全部</div>
+        <li class="mui-table-view-cell mui-media"  ng-repeat="item in data | filter:{en:type} | filter:{en:search} track by $index ">
+            <div class="upper">
+                {{item.en}}
+            </div>
+            <a class="person" href="tel:{{aa.phone}}" ng-repeat="aa in item track by $index">
+                <img class="mui-media-object mui-pull-left" src="images/touxiang.jpg">
+                <div class="mui-media-body" style="color: #fff;">
+                    {{aa.name}}
+                    <p class="mui-ellipsis" style="color: #fff;">{{aa.phone}}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <!--侧边导航-->
+    <div class="en">
+        <div ng-repeat="item in data" ng-click="filter(item.en)" style="line-height: 30px">
+            {{item.en}}
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

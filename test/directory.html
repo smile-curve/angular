@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../public/javascripts/angular/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="ctrl"></div>
+<!--指令用来做组件 react-->
+    <div abc>
+        12345
+    </div>     <!--A-->
+
+    <!--<abc></abc>     E
+
+    <div class="abc"></div>     C
+    <!--abc   M
+    -->
+</body>
+<script>
+    //abc为指令
+    //内部使用ajax 1.向服务器发起请求   2.ajax不能跨域
+    //解决ajax跨域问题   1.jsonp(使用script能跨域)  2.代理
+    
+    angular.module("myapp",[])
+    .directive("abc",function () {
+        return {
+           /* element元素  class类  map注释  a属性 */
+            restrict:"ECA",
+            template:"<div>div</div>",   /*替换文本*/
+//            templateUrl:"demo.html",  /*  使用其他内容替换文本*/
+//            replace:true,     必须只能替换一个标签
+            transclude:true,    /*保留原来的内容*/
+            //link 自己指令上没有则访问控制器上的内容，如果有的话访问的是自己指令上的内容
+            link:function (a,b,c) {
+                //a:$scope  b:
+                a.abc="指令的abc";
+            }
+
+        }
+    }).controller("ctrl",function ($scope) {
+        $scope.abc="haha";
+    })
+
+
+</script>
+</html>

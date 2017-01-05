@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 200px;height: 200px;border: 1px solid #ccc;"></div>
+    <button type="button">按钮</button>
+</body>
+<script>
+
+    /*angular 路由的本质*/
+    window.onpopstate=function () {
+
+        var url=location.href;
+        if(url.indexOf("#")>-1){
+            var ajaxurl=url.slice(url.indexOf("#")+1);
+            var xmlobj=new XMLHttpRequest();
+            xmlobj.onload=function () {
+                document.querySelector("div").innerHTML=xmlobj.responseText;
+            }
+            xmlobj.open("get",ajaxurl);
+            xmlobj.send();
+        }else{
+            document.querySelector("div").innerHTML="";
+        }
+
+        document.querySelector("button").onclick=function () {
+            var newurl=url+"#ajax.html";
+            location.href=newurl;
+            var xmlobj=new XMLHttpRequest();
+            xmlobj.onload=function () {
+                document.querySelector("div").innerHTML=xmlobj.responseText;
+            }
+            alert(location.href)
+            xmlobj.open("get",location.href);
+            xmlobj.send();
+        }
+    }
+
+
+
+    /*document.querySelector("button").onclick=function () {
+        var newurl=url+"#demo1.html";
+        location.href=newurl;
+        var xmlobj=new XMLHttpRequest();
+        xmlobj.onload=function () {
+            document.querySelector("div").innerHTML=xmlobj.responseText;
+        }
+        xmlobj.open("get","ajax.html");
+        xmlobj.send();
+    }
+*/
+
+
+</script>
+</html>

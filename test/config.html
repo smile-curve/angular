@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../public/javascripts/angular/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+    <div ng-controller="ctrl">
+
+    </div>
+</body>
+<script>
+    /*factory 自己创建一个服务
+    factory中返回什么 这个服务就只什么
+    config 配置信息  其中的信息最先执行    */
+    angular.module("myapp",[]).factory("ABC",function () {
+        return {name:"xuyahui"}
+    }).controller("ctrl",function (ABC) {
+        console.log(ABC);
+    })
+
+</script>
+</html>
